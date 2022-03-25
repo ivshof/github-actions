@@ -1,6 +1,7 @@
 name: Schedule Workflow
 
 on:
+  repository_dispatch:
 #  schedule:
 #    - cron: "*/5 * * * *"
 
