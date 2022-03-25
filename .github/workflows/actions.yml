@@ -13,6 +13,10 @@ jobs:
 
       - name: Check Out
         uses: actions/checkout@v1
+      - name: List Files after check out
+      run: |
+        pwd
+        ls -a
 
       - name: Simple JS Action
         id: greet
