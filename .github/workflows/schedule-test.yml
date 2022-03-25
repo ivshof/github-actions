@@ -1,0 +1,34 @@
+name: Schedule Workflow
+
+on:
+  schedule:
+    - cron: "0/5 * * * *"
+
+jobs:
+  run-github-actions:
+    runs-on: ubuntu-latest
+    steps:
+      - name: List Files
+        run: |
+          pwd
+          ls
+      - name: Check Out
+        uses: actions/checkout@v1
+      - name: List Files after check out
+        run: |
+          pwd
+          ls -a
+          # To get commit ID
+          echo $GITHUB_SHA
+
+          echo "GITHUB_REPOSITORY = " $GITHUB_REPOSITORY
+          echo "GITHUB_WORKSPACE = " $GITHUB_WORKSPACE
+          echo "github.token = ${{ github.token }}"
+
+      - name: Simple JS Action
+        id: greet
+        uses: actions/hello-world-javascript-action@v1
+        with:
+          who-to-greet: Slava
+      - name: Log Greeting Time
+        run: echo "${{ steps.greet.outputs.time }}"
