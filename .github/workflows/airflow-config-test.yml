@@ -16,3 +16,6 @@ jobs:
           ls -a
           cd airflow/dags/internal/ && tar zcvf ../../../airflowcfg.tgz *
           ls -a
+          echo "go to the the root directory"
+          cd ../../..
+          ls -a
