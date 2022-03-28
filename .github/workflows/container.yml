@@ -16,8 +16,7 @@ jobs:
       - uses: actions/checkout@v1
 
       - name: Run a separate script.sh
-        uses: nginx:1.20.2-alpine
-#        run: ls -la
+        run: ls -la
         with:
           entrypoint: ./script.sh
           args: "Another test string"
