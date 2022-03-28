@@ -17,6 +17,7 @@ jobs:
 
       - name: Run a separate script.sh
         run: ls -la
+
 #        with:
 #          entrypoint: ./script.sh
 #          args: "Another test string"
