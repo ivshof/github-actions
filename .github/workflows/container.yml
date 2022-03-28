@@ -13,9 +13,10 @@ jobs:
           ls -la
 
       # Get files from the ripository like "script.sh"
-      - uses: actions/checkout@v1
+        uses: actions/checkout@v1
 
       - name: Run a separate script.sh
+
         uses: nginx:1.20.2-alpine
         run: ls -la
         with:
