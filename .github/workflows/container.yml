@@ -19,7 +19,7 @@ jobs:
 #        run: |
 #          ls -la
 #          ./script.sh
-        with:#
+        with:
           entrypoint: ./script.sh
           args: "Another test string"
 
