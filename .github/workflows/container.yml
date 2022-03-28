@@ -5,7 +5,7 @@ jobs:
   node-docker:
     runs-on: ubuntu-latest
     container:
-      image: hello-world
+      image: nginx:1.20.2-alpine
     steps:
       - name: Simple commands
         run: |
