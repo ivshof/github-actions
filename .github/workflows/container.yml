@@ -19,6 +19,7 @@ jobs:
 #        run: |
 #          ls -la
 #          ./script.sh
+        uses: nginx:1.20.2-alpine
         with:
           entrypoint: ./script.sh
           args: "Another test string"
