@@ -10,6 +10,6 @@ jobs:
       - name: Simple commands
         run: |
           pwd
-          ls -a
+          ls -la
 
 
