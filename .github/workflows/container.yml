@@ -11,6 +11,5 @@ jobs:
         run: |
           pwd
           ls -a
-          lsb_release -a
 
 
