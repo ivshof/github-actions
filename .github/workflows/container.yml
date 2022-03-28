@@ -16,12 +16,12 @@ jobs:
       - uses: actions/checkout@v1
 
       - name: Run a separate script.sh
-#        run: |
-#          ls -la
-#          ./script.sh
-        uses: nginx:1.20.2-alpine
-        with:
-          entrypoint: ./script.sh
-          args: "Another test string"
+        run: |
+          ls -la
+          ./script.sh
+
+#        with:
+#          entrypoint: ./script.sh
+#          args: "Another test string"
 
 
