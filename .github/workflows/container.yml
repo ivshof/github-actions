@@ -6,7 +6,11 @@ jobs:
     runs-on: ubuntu-latest
     container:
       image: hello-world
-#    steps:
-#      - name: Log Ubuntu version
-#        run: lsb_release -a
+    steps:
+      - name: Simple commands
+        run: |
+          pwd
+          ls -a
+          lsb_release -a
+
 
