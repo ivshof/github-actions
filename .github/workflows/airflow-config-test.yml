@@ -14,5 +14,5 @@ jobs:
         run: |
           pwd
           ls -a
-          cd airflow/dags/internal/
+          cd airflow/dags/internal/ && tar zcvf ../../../airflowcfg.tgz *
           ls -a
