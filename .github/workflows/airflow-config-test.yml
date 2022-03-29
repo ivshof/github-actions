@@ -3,19 +3,34 @@ on:
   push:
     branches:
       - CBILL-5758
+#    tags:
+#      "[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+-airflow-configs-release"
+env:
+  SSHOPS: "123"
+  AIRLOGIN: "123"
+
+
 jobs:
   release-airflow-configs:
     runs-on: ubuntu-latest
     timeout-minutes: 120
     steps:
+#      - name: Check Tag regexp
+#          id: check-tag
+#          run: |
+#            if [[ ${{ github.event.ref }} =~ ^refs/tags/v[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+#                echo ::set-output name=match::true
       - name: Check Out
         uses: actions/checkout@v1
       - name: List Files after check out
         run: |
-          pwd
-          ls -a
-          cd airflow/dags/internal/ && tar zcvf ../../../airflowcfg.tgz *
-          ls -a
-          echo "go to the the root directory"
-          cd ../../..
-          ls -a
+          ls - la
+          echo "GITHUB_REF = " $GITHUB_REF
+          echo "GITHUB_REPOSITORY = " $GITHUB_REPOSITORY
+          echo "GITHUB_WORKSPACE = " $GITHUB_WORKSPACE
+          echo "SSHOPS = " $SSHOPS
+          echo "AIRLOGIN = " $AIRLOGIN
+#          cd airflow/dags/internal/ && tar zcvf ../../../airflowcfg.tgz *
+#          scp ${{SSHOPS}} ../../../airflowcfg.tgz ${{AIRLOGIN}}:/opt/genesys/airflow.local/dags/
+#          ssh ${{SSHOPS}} ${{AIRLOGIN}} "cd /opt/genesys/airflow.local/dags/ && tar --overwrite -zxvf airflowcfg.tgz ; /bin/rm airflowcfg.tgz"
+#          ssh ${{SSHOPS}} ${{AIRLOGIN}} "chmod +x /opt/genesys/airflow.local/dags/scripts/*.sh
