@@ -1,13 +1,13 @@
 name: Release airflow configs
 on:
   push:
-    branches:
-      - "[0-9]+\\.[0-9]+\\.[0-9]+\\.[0-9]+-airflow-configs-release"
+#    branches:
+#      - "[0-9]+\\.[0-9]+\\.[0-9]+\\.[0-9]+-airflow-configs-release"
 #    tags:
-#      "[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+-airflow-configs-release"
+#      - "[0-9]+\\.[0-9]+\\.[0-9]+\\.[0-9]+-airflow-configs-release"
 env:
   SSHOPS: "123"
-  AIRLOGIN: "123"
+  AIRLOGIN: "genesys@vce-u0127.us.int.genesyslab.com"
 
 
 
@@ -29,6 +29,9 @@ jobs:
           echo "GITHUB_REF = " $GITHUB_REF
           echo "GITHUB_REPOSITORY = " $GITHUB_REPOSITORY
           echo "GITHUB_WORKSPACE = " $GITHUB_WORKSPACE
+          ssh $AIRLOGIN
+          ls -la
+
           echo "SSHOPS = " $SSHOPS
           echo "AIRLOGIN = " $AIRLOGIN
           echo "tags = " $GITHUB_REF#refs/*/
