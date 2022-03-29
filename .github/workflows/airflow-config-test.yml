@@ -1,8 +1,8 @@
 name: Release airflow configs
-on: push
-#  push:
-#    branches:
-#      - CBILL-5758
+on:
+  push:
+    branches:
+      - "[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+-airflow-configs-release"
 #    tags:
 #      "[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+-airflow-configs-release"
 env:
