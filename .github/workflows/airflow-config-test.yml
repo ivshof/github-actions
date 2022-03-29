@@ -32,6 +32,7 @@ jobs:
           echo "AIRLOGIN = " $AIRLOGIN
           echo "tags = " $GITHUB_REF#refs/*/
           echo "tags = " ${GITHUB_REF#refs/*/}
+
 #          cd airflow/dags/internal/ && tar zcvf ../../../airflowcfg.tgz *
 #          scp ${{SSHOPS}} ../../../airflowcfg.tgz ${{AIRLOGIN}}:/opt/genesys/airflow.local/dags/
 #          ssh ${{SSHOPS}} ${{AIRLOGIN}} "cd /opt/genesys/airflow.local/dags/ && tar --overwrite -zxvf airflowcfg.tgz ; /bin/rm airflowcfg.tgz"
