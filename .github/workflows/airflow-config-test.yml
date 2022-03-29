@@ -10,6 +10,7 @@ env:
   AIRLOGIN: "123"
 
 
+
 jobs:
   release-airflow-configs:
     runs-on: ubuntu-latest
