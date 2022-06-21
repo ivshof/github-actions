@@ -1,10 +1,9 @@
-name: Schedule Workflow
+name: Schedule Test v2
 
 on:
   repository_dispatch:
-#  schedule:
-#    - cron: "*/5 * * * *"
-
+  schedule:
+    - cron: '*/10 * * * *'
 
 
 jobs:
@@ -27,11 +26,3 @@ jobs:
           echo "GITHUB_REPOSITORY = " $GITHUB_REPOSITORY
           echo "GITHUB_WORKSPACE = " $GITHUB_WORKSPACE
           echo "github.token = ${{ github.token }}"
-
-      - name: Simple JS Action
-        id: greet
-        uses: actions/hello-world-javascript-action@v1
-        with:
-          who-to-greet: Slava
-      - name: Log Greeting Time
-        run: echo "${{ steps.greet.outputs.time }}"
