@@ -1,8 +1,14 @@
-name: Schedule Test v2
-
+name: "Schedule Test v2"
 on:
   schedule:
-  - cron: "*/10 * * * *"
+    - cron: '*/10 * * * *' # At 02:00 every night
+#    - cron: '0 2 * * 7' # At 02:00 on Sunday
+#  push:
+##    tags:
+##      - "[0-9]+\\.[0-9]+\\.[0-9]+\\.[0-9]+-test-dockerbuild"
+##      - "[0-9]+\\.[0-9]+\\.[0-9]+\\.[0-9]+-dockerbuild"
+#    branches:
+#      - CBILL-5989
 
 
 jobs:
