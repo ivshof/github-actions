@@ -1,7 +1,7 @@
 name: "Schedule Test v2"
 on:
   schedule:
-    - cron: '*/10 * * * *' # At 02:00 every night
+    - cron: '0 2 * * *' # At 02:00 every night
 #    - cron: '0 2 * * 7' # At 02:00 on Sunday
 #  push:
 ##    tags:
