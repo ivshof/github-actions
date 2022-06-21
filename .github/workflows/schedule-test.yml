@@ -1,7 +1,6 @@
 name: Schedule Test v2
 
 on:
-  repository_dispatch:
   schedule:
     - cron: '*/10 * * * *'
 
