@@ -16,6 +16,7 @@ jobs:
           ls
       - name: Read VARS
         run: |
+          sudo apt-get install jq -y
           # Read approved image versions
           IMAGE_VER_FILE="action-change.json"
 
