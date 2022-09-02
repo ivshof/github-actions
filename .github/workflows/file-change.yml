@@ -23,10 +23,10 @@ jobs:
           # Read approved image versions
           IMAGE_VER_FILE="action-change.json"
 
-          echo IMAGE_PROD_VERSION=`jq '.prod' $IMAGE_VER_FILE` >> $GITHUB_ENV
-          echo IMAGE_RELEASE_VERSION=`jq '.release' $IMAGE_VER_FILE` >> $GITHUB_ENV
-          echo IMAGE_DEV_VERSION=`jq '.dev' $IMAGE_VER_FILE` >> $GITHUB_ENV
+          echo IMAGE_PROD_VERSION=`jq '.prod' $IMAGE_VER_FILE`
+          echo IMAGE_RELEASE_VERSION=`jq '.release' $IMAGE_VER_FILE`
+          echo IMAGE_DEV_VERSION=`jq '.dev' $IMAGE_VER_FILE`
           
-          echo IMAGE_PROD_VERSION = "${{ env.IMAGE_PROD_VERSION }}"
-          echo IMAGE_RELEASE_VERSION = "${{ env.IMAGE_RELEASE_VERSION }}"
-          echo IMAGE_DEV_VERSION = "${{ env.IMAGE_DEV_VERSION }}"
+          echo IMAGE_PROD_VERSION = $IMAGE_PROD_VERSION
+          echo IMAGE_RELEASE_VERSION = $IMAGE_PROD_VERSION
+          echo IMAGE_DEV_VERSION = $IMAGE_DEV_VERSION
