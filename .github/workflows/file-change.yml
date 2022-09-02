@@ -2,7 +2,7 @@
 name: "File change monitor"
 on:
   push:
-    path:
+    paths:
       - 'action-change.json'
 
 
@@ -10,13 +10,16 @@ jobs:
   File-change-monitor:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout
+        uses: actions/checkout@v2 
+        
       - name: List Files
         run: |
           pwd
           ls
+          
       - name: Read VARS
         run: |
-          sudo apt-get install jq -y
           # Read approved image versions
           IMAGE_VER_FILE="action-change.json"
 
