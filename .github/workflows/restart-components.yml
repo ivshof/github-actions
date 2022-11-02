@@ -24,7 +24,12 @@ on:
       tenant:
         description: Tenant (use "ALL" for shared services; "ALL", "BULK" for all tenants)
         required: true
-
+      service_name:
+        type: choice
+        description: Service Name (GCXI/RAA)
+        required: true
+        options:
+          - RAA
 jobs:
   gather_input:
     runs-on: [ubuntu-latest]
