@@ -16,8 +16,10 @@ on:
       environment:
         description: Environment (dev/stage/prod00X)
         required: true
-      location:
+      location:        
         description: Location (eastus2/westus2)
+        type: choice
+        options: [eastus2, westus2]
         required: true
       tenant:
         description: Tenant (use "ALL" for shared services; "ALL", "BULK" for all tenants)
@@ -48,5 +50,4 @@ jobs:
           echo CLOUD = $CLOUD
           echo ENVIRONMENT = $ENVIRONMENT
           echo LOCATION = $LOCATION
-          echo TENANT = $TENANT
-          echo SERVICE_NAME = $SERVICE_NAME           
+          echo TENANT = $TENANT      
