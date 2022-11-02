@@ -1,0 +1,52 @@
+name: Restart Components
+on:
+  pull_request:
+    branches:
+      - master
+    types: [closed]
+    paths: ['helmvalues/**restart**']
+  workflow_dispatch:
+    inputs:
+      cloud:
+        description: Cloud (azure/gcp)
+        type: choice
+        required: true
+        options: [azure, gcp]
+        default: azure
+      environment:
+        description: Environment (dev/stage/prod00X)
+        required: true
+      location:
+        description: Location (eastus2/westus2)
+        required: true
+      tenant:
+        description: Tenant (use "ALL" for shared services; "ALL", "BULK" for all tenants)
+        required: true
+
+jobs:
+  gather_input:
+    runs-on: [ubuntu-latest]
+    outputs:
+      # action:       ${{ steps.parse.outputs.action }}
+      cloud:        ${{ steps.parse.outputs.cloud }}
+      environment:  ${{ steps.parse.outputs.environment }}
+      location:     ${{ steps.parse.outputs.location }}
+      tenant:       ${{ steps.parse.outputs.tenant }}
+      service_name: ${{ steps.parse.outputs.service_name }}
+    env:
+      # Pass data from workflow_dispatch and fromm pull_request
+      CLOUD:        ${{ inputs.cloud }}
+      ENVIRONMENT:  ${{ inputs.environment }}
+      LOCATION:     ${{ inputs.location }}
+      TENANT:       ${{ inputs.tenant }}
+      SERVICE_NAME: ${{ inputs.service_name }}
+    steps:
+      - name: Parse Pull Request Title or Manual Inputs
+        id: parse
+        shell: bash
+        run: |
+          echo CLOUD = $CLOUD
+          echo ENVIRONMENT = $ENVIRONMENT
+          echo LOCATION = $LOCATION
+          echo TENANT = $TENANT
+          echo SERVICE_NAME = $SERVICE_NAME           
