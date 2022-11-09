@@ -16,6 +16,7 @@ on:
       environment:
         description: Environment (dev/stage/prod00X)
         required: true
+        default: stage
       location:        
         description: Location (eastus2/westus2)
         type: choice
