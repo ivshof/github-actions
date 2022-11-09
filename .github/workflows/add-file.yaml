@@ -69,9 +69,9 @@ jobs:
           head_branch="$ACTION-RAA-$CLOUD-$ENVIRONMENT-$LOCATION-$TENANT-$randstr"
           git checkout -b "$head_branch"        
           tenant_dir="./helmvalues/gcxi-raa/$CLOUD/$ENVIRONMENT/$LOCATION/tenants/$TENANT"
-          tool.command_file="$tenant_dir/tool.command_${randstr}"    
+          tool_command_file="$tenant_dir/tool.db.command_${randstr}"    
 
-          echo -${PARAM_NAME} >> ${tool.command_file}
-          echo ${PARAM_VALUE} >> ${tool.command_file}
+          echo -${PARAM_NAME} >> ${tool_command_file}
+          echo ${PARAM_VALUE} >> ${tool_command_file}
           git add $tool_db_command_file          
           git commit -m "$PRTITLE"          
