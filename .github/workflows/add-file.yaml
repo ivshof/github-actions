@@ -1,0 +1,82 @@
+name: RAA Tool
+on:
+  workflow_dispatch:
+    inputs:
+      action:
+        description: Supported Actions
+        required: true
+        default: re-aggregate
+      cloud:
+        description: Cloud (azure/gcp)
+        type: choice
+        required: true
+        options: [azure, gcp]
+        default: azure
+      environment:
+        description: Environment (dev/stage/prod00X)
+        required: true
+      location:
+        description: Location (eastus2/westus2)
+        type: choice
+        options: [eastus2, westus2]
+        required: true
+      tenant:
+        description: Tenant id (only one id, like 1005)
+        required: true
+      param_name:
+        description: Parameter name (insertPendingAgg, printQuery etc)
+        required: true
+        default: insertPendingAgg
+      param_value:
+        description: Parameter value (ALLSETS:2021-10-17:2021-11-16)
+        required: true
+
+jobs:
+  file_pr:
+    runs-on: [ubuntu-latest]
+    steps:
+      - name: Clean up runner
+        shell: bash
+        run: |
+          rm -f ~/.ssh/*
+          rm -f ~/.gitconfig
+        continue-on-error: true
+
+      - name: Checkout Repository
+        uses: actions/checkout@2541b1294d2704b0964813337f33b291d3f8596b # v3.0.2
+
+      - name: Create PR
+        env:
+          GITHUB_TOKEN: ${{ secrets.GIT_ACTION_PAT }}
+          ACTION:       ${{ inputs.action }}
+          CLOUD:        ${{ inputs.cloud }}
+          ENVIRONMENT:  ${{ inputs.environment }}
+          LOCATION:     ${{ inputs.location }}
+          TENANT:       ${{ inputs.tenant }}
+          APP_NAME:     ${{ inputs.app_name }}
+          PARAM_NAME:   ${{ inputs.param_name }}
+          PARAM_VALUE:  ${{ inputs.param_value }}
+
+        shell: bash
+        run: |
+          set -x
+          git config user.email "githubactions-genesysengage@genesysengage.cloud"
+          git config user.name  "githubactions-genesysengage"          
+          PRTITLE="$ACTION for RAA tenant=$TENANT, cloud=$CLOUD loc=$LOCATION env=$ENVIRONMENT"    
+          
+          #tenant_dir="./helmvalues/gcxi-raa/pr/$CLOUD/$ENVIRONMENT/$LOCATION/tenants/$tenant/"
+          
+          randstr=$(mktemp --dry-run XXXXX)
+          head_branch="$ACTION-RAA-$CLOUD-$ENVIRONMENT-$LOCATION-$TENANT-$randstr"
+          git checkout -b "$head_branch"        
+          tenant_dir="./helmvalues/gcxi-raa/$CLOUD/$ENVIRONMENT/$LOCATION/tenants/$TENANT"
+          mkdir -p "$tenant_dir"   
+          touch $tenant_dir/tool.db.command_${randstr}
+          tool.db.command_file="$tenant_dir/tool.db.command_${randstr}"    
+
+          echo -${PARAM_NAME} >> ${tool.db.command_file}
+          echo ${PARAM_VALUE} >> ${tool.db.command_file}
+          git add $tool.db.command_file          
+          git commit -m "$PRTITLE"          
+          git push --set-upstream origin "$head_branch"        
+          gh pr create --base "$GITHUB_REF" --head "$head_branch" --title "$PRTITLE" --body ""
