@@ -72,6 +72,8 @@ jobs:
           tenant_dir="./helmvalues/gcxi-raa/$CLOUD/$ENVIRONMENT/$LOCATION/tenants/$TENANT"
           mkdir -p "$tenant_dir"   
           touch $tenant_dir/tool.db.command_${randstr}
+          ls $tenant_dir
+          pwd
           tool.db.command_file="$tenant_dir/tool.db.command_${randstr}"    
 
           echo -${PARAM_NAME} >> ${tool.db.command_file}
