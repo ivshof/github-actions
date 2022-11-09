@@ -47,7 +47,6 @@ jobs:
 
       - name: Create PR
         env:
-          GITHUB_TOKEN: ${{ secrets.GIT_ACTION_PAT }}
           ACTION:       ${{ inputs.action }}
           CLOUD:        ${{ inputs.cloud }}
           ENVIRONMENT:  ${{ inputs.environment }}
@@ -70,15 +69,9 @@ jobs:
           head_branch="$ACTION-RAA-$CLOUD-$ENVIRONMENT-$LOCATION-$TENANT-$randstr"
           git checkout -b "$head_branch"        
           tenant_dir="./helmvalues/gcxi-raa/$CLOUD/$ENVIRONMENT/$LOCATION/tenants/$TENANT"
-          mkdir -p "$tenant_dir"   
-          touch $tenant_dir/tool_db_command_file_${randstr}
-          ls $tenant_dir
-          pwd
-          tool_db_command_file="$tenant_dir/tool_db_command_file_${randstr}"    
+          tool.command_file="$tenant_dir/tool.command_${randstr}"    
 
-          echo -${PARAM_NAME} >> ${tool_db_command_file}
-          echo ${PARAM_VALUE} >> ${tool_db_command_file}
+          echo -${PARAM_NAME} >> ${tool.command_file}
+          echo ${PARAM_VALUE} >> ${tool.command_file}
           git add $tool_db_command_file          
           git commit -m "$PRTITLE"          
-          git push --set-upstream origin "$head_branch"        
-          gh pr create --base "$GITHUB_REF" --head "$head_branch" --title "$PRTITLE" --body ""
