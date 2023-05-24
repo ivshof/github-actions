@@ -24,7 +24,7 @@ jobs:
         action:      ${{steps.extra.outputs.action}}
         withTestEnv: ${{steps.extra.outputs.withTestEnv}}
         version:     ${{steps.extra.outputs.version}}
-        deployed:    ${{steps.extra.outputs.deployed}
+        deployed:    ${{steps.extra.outputs.deployed}}
 
       steps:
         - name: Checkout
