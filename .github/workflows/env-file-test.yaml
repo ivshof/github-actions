@@ -36,11 +36,12 @@ jobs:
               echo "{action}=${action}"
               echo "{version}=${version}"
               echo "{deployed}={true}"
+              echo "Set vars done! :rocket:" >> $GITHUB_STEP_SUMMARY
                   
         - name: Print environment
           run: |
-            printenv
-            echo '================'
+            echo 'Access VARS in the same job'
+            
             echo "deployed = ${{ steps.req.outputs.deployed }}"
             echo "version = ${{ steps.req.outputs.version }}"
             echo "action = ${{ steps.req.outputs.action }}"
@@ -62,11 +63,12 @@ jobs:
           
         - name: Print environment job2
           run: |
-            printenv
-            echo '================'
+            echo 'Access VARS from different job'
+            
             echo "deployed = ${{ needs.job1.outputs.deployed }}"
             echo "version = ${{ needs.job1.outputs.version }}"
             echo "action = ${{ needs.job1.outputs.action }}"
+            echo "Print environment job2 vars done! :rocket:" >> $GITHUB_STEP_SUMMARY
             
         
     
