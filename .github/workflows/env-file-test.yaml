@@ -62,10 +62,9 @@ jobs:
           run: |
             printenv
             echo '================'
-            echo "deployed = ${{ needs.job1.outputs.deployed }}"
+            echo "deployed = ${{ needs.job1.req.outputs.deployed }}"
             echo "version = ${{ needs.job1.outputs.version }}"
             echo "action = ${{ needs.job1.outputs.action }}"
-            echo "### Hello world! :rocket:" >> $GITHUB_STEP_SUMMARY
             
         
     
