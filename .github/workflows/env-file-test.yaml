@@ -21,10 +21,13 @@ jobs:
         - name: Set vars
           id: req
           run: | 
-              echo "version=1.133.331.31"  >> "$GITHUB_OUTPUT"
+              deployed=true
+              action=upgrade
+              version=1.133.331.31
               
-              echo "{deployed}={true}" >> "$GITHUB_OUTPUT"
-              echo "{action}=upgrade" >> $GITHUB_OUTPUT
+              echo "version=${version}"  >> $GITHUB_OUTPUT             
+              echo "deployed=${deployed}" >> $GITHUB_OUTPUT
+              echo "action=${action}" >> $GITHUB_OUTPUT
               
               echo "{action}=${action}"
               echo "{version}=${version}"
