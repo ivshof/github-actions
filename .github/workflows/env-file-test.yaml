@@ -30,5 +30,19 @@ jobs:
         - name: Checkout
           uses: actions/checkout@v2
           
+        - name: Set vars
+          run: | 
+              version=1.133.331.31
+              action=upgrade
+              echo "{deployed}={true}" >> $GITHUB_OUTPUT
+              echo "{version}=${version}" >> $GITHUB_OUTPUT      
+              echo "{action}=${action}" >> $GITHUB_OUTPUT       
+                  
         - name: Print environment
-          run: printenv
+          run: |
+            printenv
+            echo '================'
+            echo "${{ env.deployed }}"
+            echo "${{ env.version }}"
+            echo "${{ env.action }}"
+            
