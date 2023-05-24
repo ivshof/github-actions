@@ -14,18 +14,6 @@ jobs:
       name: action configuration
       runs-on: [ubuntu-latest]
 
-      outputs:
-        title:       ${{steps.req.outputs.title}}
-        cloud: ${{steps.std.outputs.cloud}}
-        environment: ${{steps.std.outputs.environment}}
-        location:    ${{steps.std.outputs.location}}
-        tenants:     ${{steps.std.outputs.tenants}}
-
-        action:      ${{steps.extra.outputs.action}}
-        withTestEnv: ${{steps.extra.outputs.withTestEnv}}
-        version:     ${{steps.extra.outputs.version}}
-        deployed:    ${{steps.extra.outputs.deployed}}
-
       steps:
         - name: Checkout
           uses: actions/checkout@v2
@@ -35,8 +23,8 @@ jobs:
           run: | 
               version=1.133.331.31
               action=upgrade
-              echo "{deployed}={true}" >> $GITHUB_OUTPUT
-              echo "{version}=${version}" >> $GITHUB_OUTPUT      
+              echo "{deployed}={true}" >> "$GITHUB_OUTPUT"
+              echo "{version}=${version}" >> "$GITHUB_OUTPUT"     
               echo "{action}=${action}" >> $GITHUB_OUTPUT
               
               echo "{action}=${action}"
@@ -50,4 +38,5 @@ jobs:
             echo "${{ steps.req.outputs.deployed }}"
             echo "${{ steps.req.outputs.version }}"
             echo "${{ steps.req.outputs.action }}"
+            echo "### Hello world! :rocket:" >> $GITHUB_STEP_SUMMARY
             
