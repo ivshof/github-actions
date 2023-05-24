@@ -1,4 +1,4 @@
-name: "Env files usage"
+name: "Access GITHUB_OUTPUT values"
 on:
   workflow_dispatch:
     inputs:
@@ -13,6 +13,8 @@ jobs:
     job1:
       name: action configuration
       runs-on: [ubuntu-latest]
+      
+      # Use outputs to access from the job2
       outputs:
         action: ${{ steps.req.outputs.action }}
         version: ${{ steps.req.outputs.version }}
@@ -25,17 +27,18 @@ jobs:
         - name: Set vars
           id: req
           run: | 
+          
+              # SET VARS:
               deployed=true
               action=upgrade
               version=1.133.331.31
+              
+              # Save in GITHUB_OUTPUT https://docs.github.com/en/actions/using-workflows/workflow-commands-for-github-actions#environment-files
               
               echo "version=${version}"  >> "$GITHUB_OUTPUT"             
               echo "deployed=${deployed}" >> "$GITHUB_OUTPUT"
               echo "action=${action}" >> $GITHUB_OUTPUT
               
-              echo "{action}=${action}"
-              echo "{version}=${version}"
-              echo "{deployed}={true}"
               echo "Set vars done! :rocket:" >> $GITHUB_STEP_SUMMARY
                   
         - name: Print environment
