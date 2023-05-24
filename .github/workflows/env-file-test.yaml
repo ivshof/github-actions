@@ -49,3 +49,25 @@ jobs:
          
         - name: Get color
           run: echo "The selected color is ${{ steps.random-color-generator.outputs.SELECTED_COLOR }}"
+    job2:
+        name: pre action validation
+        needs: job1
+        runs-on: [ubuntu-latest]
+        
+        steps:
+        - name: Checkout
+          uses: actions/checkout@v2
+          
+        - name: Print environment job2
+          run: |
+            printenv
+            echo '================'
+            echo "deployed = ${{ steps.req.outputs.deployed }}"
+            echo "version = ${{ steps.req.outputs.version }}"
+            echo "action = ${{ steps.req.outputs.action }}"
+            echo "### Hello world! :rocket:" >> $GITHUB_STEP_SUMMARY
+            
+        
+    
+      
+    
