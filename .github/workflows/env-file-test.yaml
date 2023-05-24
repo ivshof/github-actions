@@ -55,8 +55,6 @@ jobs:
         runs-on: [ubuntu-latest]
         
         steps:
-        - name: Checkout
-          uses: actions/checkout@v2
           
         - name: Print environment job2
           run: |
