@@ -37,7 +37,11 @@ jobs:
               action=upgrade
               echo "{deployed}={true}" >> $GITHUB_OUTPUT
               echo "{version}=${version}" >> $GITHUB_OUTPUT      
-              echo "{action}=${action}" >> $GITHUB_OUTPUT       
+              echo "{action}=${action}" >> $GITHUB_OUTPUT
+              
+              echo "{action}=${action}"
+              echo "{version}=${version}"
+              echo "{deployed}={true}"
                   
         - name: Print environment
           run: |
