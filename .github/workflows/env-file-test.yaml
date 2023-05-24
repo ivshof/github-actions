@@ -35,8 +35,8 @@ jobs:
           run: |
             printenv
             echo '================'
-            echo "${{ steps.req.outputs.deployed }}"
-            echo "${{ steps.req.outputs.version }}"
-            echo "${{ steps.req.outputs.action }}"
+            echo "deployed = ${{ steps.req.outputs.deployed }}"
+            echo "version = ${{ steps.req.outputs.version }}"
+            echo "action = ${{ steps.req.outputs.action }}"
             echo "### Hello world! :rocket:" >> $GITHUB_STEP_SUMMARY
             
