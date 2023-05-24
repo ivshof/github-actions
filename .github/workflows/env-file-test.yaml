@@ -13,6 +13,10 @@ jobs:
     job1:
       name: action configuration
       runs-on: [ubuntu-latest]
+      outputs:
+        action: ${{ steps.req.outputs.action }}
+        version: ${{ steps.req.outputs.version }}
+        deployed: ${{ steps.req.outputs.deployed }}
 
       steps:
         - name: Checkout
@@ -60,7 +64,7 @@ jobs:
           run: |
             printenv
             echo '================'
-            echo "deployed = ${{ needs.job1.req.outputs.deployed }}"
+            echo "deployed = ${{ needs.job1.outputs.deployed }}"
             echo "version = ${{ needs.job1.outputs.version }}"
             echo "action = ${{ needs.job1.outputs.action }}"
             
