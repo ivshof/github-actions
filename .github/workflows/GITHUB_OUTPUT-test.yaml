@@ -42,6 +42,11 @@ jobs:
               echo "action=${action}" >> $GITHUB_OUTPUT
               
               echo "# Creating image <${CURRENT_DATE}> # :rocket:" >> $GITHUB_STEP_SUMMARY
+              echo "## Creating image <${CURRENT_DATE}> ## :rocket:" >> $GITHUB_STEP_SUMMARY
+              echo "### Creating image <${CURRENT_DATE}> ### :rocket:" >> $GITHUB_STEP_SUMMARY
+              echo "#### Creating image <${CURRENT_DATE}> #### :rocket:" >> $GITHUB_STEP_SUMMARY
+              echo " Creating image <${CURRENT_DATE}>  :rocket:" >> $GITHUB_STEP_SUMMARY
+              
                   
         - name: Print environment
           run: |
