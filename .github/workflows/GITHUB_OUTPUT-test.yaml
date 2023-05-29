@@ -52,7 +52,8 @@ jobs:
             echo "action = ${{ steps.req.outputs.action }}"
             echo "## Work in progress" >> $GITHUB_STEP_SUMMARY
             echo "1st - DONE :ok:" >> $GITHUB_STEP_SUMMARY 
-            echo "2st - DONE :ok:" >> $GITHUB_STEP_SUMMARY 
+            echo "2st - DONE :done:" >> $GITHUB_STEP_SUMMARY 
+            echo "3st - DONE :completed:" >> $GITHUB_STEP_SUMMARY 
             
             
         - name: Set color
