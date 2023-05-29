@@ -32,7 +32,7 @@ jobs:
               deployed=true
               action=upgrade
               version=1.133.331.31
-              CURRENT_DATE=`date +"%Y%m%d"
+              CURRENT_DATE=`date +"%Y%m%d%H%M"`
               VTAG="${CURRENT_DATE}"
               
               # Save in GITHUB_OUTPUT https://docs.github.com/en/actions/using-workflows/workflow-commands-for-github-actions#environment-files
