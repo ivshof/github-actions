@@ -41,7 +41,7 @@ jobs:
               echo "deployed=${deployed}" >> "$GITHUB_OUTPUT"
               echo "action=${action}" >> $GITHUB_OUTPUT
               
-              echo "#Creating image <${CURRENT_DATE}> # :rocket:" >> $GITHUB_STEP_SUMMARY
+              echo "# Creating image <${CURRENT_DATE}> # :rocket:" >> $GITHUB_STEP_SUMMARY
                   
         - name: Print environment
           run: |
@@ -50,7 +50,7 @@ jobs:
             echo "deployed = ${{ steps.req.outputs.deployed }}"
             echo "version = ${{ steps.req.outputs.version }}"
             echo "action = ${{ steps.req.outputs.action }}"
-            echo "##Work in progress" >> $GITHUB_STEP_SUMMARY
+            echo "## Work in progress" >> $GITHUB_STEP_SUMMARY
             echo "1st - DONE :ok:" >> $GITHUB_STEP_SUMMARY 
             echo "2st - DONE :ok:" >> $GITHUB_STEP_SUMMARY 
             
